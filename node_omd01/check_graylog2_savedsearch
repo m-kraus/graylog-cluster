@@ -1,0 +1,39 @@
+#!/usr/bin/python
+"""check_graylog2_savedsearch
+
+Usage:
+  check_graylog2_savedsearch -U <url> -s <seconds> -i <id>
+  check_graylog2_savedsearch -h | --help
+
+Options:
+  -h --help               Show this screen.
+  -U --url=<url>          Graylog2 API URL, including basic auth.
+  -s --seconds=<seconds>  Query this many seconds in the past.
+  -i --id=<id>            Graylog2 saved search id.
+
+"""
+from docopt import docopt
+import requests, json
+
+def main():
+  args = docopt(__doc__)
+  url = '%s/search/universal/relative?&range=%d&query=%s' % ( args['--url'], int(args['--seconds']), args['--id'] )
+  try:
+    graylog_request = requests.get( url )
+    graylog_results = json.loads( graylog_request.content )
+    print graylog_results
+    log_count = int(graylog_results['total_results'])
+  except requests.exceptions.RequestException as e:
+    print "CRITICAL error making Graylog2 query: %s" % ( e )
+    exit(2)
+
+  if (log_count > 0):
+    print "CRITICAL Graylog2 query returned %d results" % log_count
+    exit(2)
+  else:
+    print "OK Graylog2 query returned zero results"
+    exit(0)
+
+if __name__ == "__main__":
+    main()
+

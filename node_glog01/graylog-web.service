@@ -1,0 +1,17 @@
+[Unit]
+Description=Graylog web interface
+BindTo=network.target
+Requires=graylog-server.service
+
+[Service]
+Type=simple
+User=graylog
+PermissionsStartOnly=true
+ExecStartPre=-/usr/bin/mkdir -p /var/run/graylog/
+ExecStartPre=/usr/bin/chown -R graylog:graylog /var/run/graylog/
+PIDFile=/var/run/graylog/web.pid
+Environment="JAVA_OPTS=-Xms256m -Xmx256m -Djava.net.preferIPv4Stack=true -Dconfig.file=/etc/graylog/web/web.conf -Dlogger.file=/etc/graylog/web/logger.xml"
+ExecStart=/opt/graylog-web-interface/bin/graylog-web-interface
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,11 @@
+foo foo bar %SYS-3-CPUHOG: Task ran for 18428 msec (22/9), process = IP SNMP, PC = 46576EC.
+foo foo bar %LINEPROTO-5-UPDOWN: Line protocol on Interface Serial4/0, changed state to up
+foo foo bar %LINEPROTO-5-UPDOWN: Line protocol on Interface Serial4/0, changed state to down
+foo foo bar %OSPF-5-ADJCHG: Process 100, Nbr 1.2.3.4 on Serial2/1.2 from FULL to DOWN, Neighbor Down: Interface down or detached
+foo foo bar %OSPF-5-ADJCHG: Process 100, Nbr 1.2.3.4 on Serial2/1.2 from LOADING to FULL, Loading Done
+foo foo bar %BGP-5-ADJCHANGE: neighbor 192.168.1.17 Down Peer closed the session
+foo foo bar %BGP-5-ADJCHANGE: neighbor 192.168.1.17 Down Peer closed the session
+foo foo bar %DUAL-5-NBRCHANGE: IP-EIGRP 109: Neighbor 10.1.1.1 (ATM3/0.1) is down: holding time expired
+foo foo bar %DUAL-5-NBRCHANGE: IP-EIGRP 109: Neighbor 10.1.1.1 (GigabitEthernet1/2) is down: peer restarted
+foo foo bar %DUAL-5-NBRCHANGE: IP-EIGRP 109: Neighbor 10.1.1.1 (GigabitEthernet1/2) is down: interface down
+foo foo bar %DUAL-5-NBRCHANGE: IP-EIGRP 109: Neighbor 10.1.1.1 (GigabitEthernet1/2) is up: new adjacency
