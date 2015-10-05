@@ -12,7 +12,7 @@ Vagrant.configure(2)  do |config|
     config.proxy.no_proxy = "localhost,127.0.0.1"
   end
 
-  config.vm.box = "chef/centos-7.1"
+  config.vm.box = "bento/centos-7.1"
 
   config.vm.provider :virtualbox do |v|
      #vb.gui  = true
