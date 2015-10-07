@@ -12,6 +12,14 @@ Vagrant.configure(2)  do |config|
     config.proxy.no_proxy = "localhost,127.0.0.1"
   end
 
+  if Vagrant.has_plugin?("vagrant-timezone")
+    config.timezone.value = "Europe/Berlin"
+  end
+  if Vagrant.has_plugin?("vagrant-cachier")
+    config.cache.scope       = :box
+    config.cache.auto_detect = true
+  end
+
   config.vm.box = "bento/centos-7.1"
 
   config.vm.provider :virtualbox do |v|
