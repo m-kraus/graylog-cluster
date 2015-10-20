@@ -15,7 +15,7 @@
 - glog03 (172.16.100.55):
   - Elasticsearch: http://172.16.100.55:9200/_plugin/kopf/
   - MongoDB
-  - Graylog: http://172.16.100.54 (admin:admin)
+  - Graylog: http://172.16.100.55 (admin:admin)
   - HAProxy: 172.16.100.55:514, verteilt Round-Robin auf glog01/glog02/glog03:10514
 
 - omd01 (172.16.100.60):
