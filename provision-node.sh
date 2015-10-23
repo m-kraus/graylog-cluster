@@ -64,6 +64,7 @@ systemctl enable graylog-server.service
 
 # splunk plugin
 cp /vagrant/install/plugin-output-splunk-0.3.0.jar /opt/graylog/plugin/
+cp /vagrant/install/graylog-plugin-snmp-0.3.0.jar /opt/graylog/plugin/
 
 # WORKAROUND NECESSARY:
 # service does not start when not called this way (as root) initially
