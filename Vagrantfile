@@ -43,7 +43,7 @@ Vagrant.configure(2)  do |config|
         s.path = "provision-firststart.sh"
     end
     config.vm.provider "virtualbox" do |v|
-      v.memory = 4096
+      v.memory = 3072
     end
   end
   config.vm.define "glog02" do |glog02|
@@ -58,7 +58,7 @@ Vagrant.configure(2)  do |config|
         s.path = "provision-firststart.sh"
     end
     config.vm.provider "virtualbox" do |v|
-      v.memory = 4096
+      v.memory = 3072
     end
   end
   config.vm.define "glog03" do |glog03|
@@ -73,7 +73,7 @@ Vagrant.configure(2)  do |config|
         s.path = "provision-firststart.sh"
     end
     config.vm.provider "virtualbox" do |v|
-      v.memory = 4096
+      v.memory = 3072
     end
   end
   config.vm.define "omd01", autostart: false do |omd01|
