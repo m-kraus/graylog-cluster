@@ -47,7 +47,7 @@ Kurze Lasttests auf einem Macbook Pro mit diesem Vagrant-Setup konnten ca. 700 N
 Zum Einsatz kam das Tool ```loggen``` aus dem ```syslog-ng```-Projekt mit diesem Aufruf gleichzeitig auf allen 3 nodes:
 
 ```
-/vagrant/loggen --size 300 --rate 300 --interval 600 --syslog-proto 127.0.0.1 514 --loop-reading --read-file=/vagrant/sample.log
+/vagrant/loggen --size 300 --rate 300 --interval 600 --syslog-proto 127.0.0.1 10514 --loop-reading --read-file=/vagrant/sample.log
 ```
 
 Syslog (TCP) war dazu auf allen 3 nodes ohne weitere Änderungen aktiviert.
