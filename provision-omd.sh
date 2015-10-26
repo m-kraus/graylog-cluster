@@ -30,6 +30,7 @@ omd create demosite
 omd stop demosite
 omd config demosite set CORE nagios
 omd config demosite set DEFAULT_GUI thruk
+omd config demosite set THRUK_COOKIE_AUTH off
 
 mv graylogapi/site/etc/graylogapi/apikeys /omd/sites/demosite/etc/graylogapi/
 mv graylogapi/site/etc/nagios/conf.d/graylog* /omd/sites/demosite/etc/nagios/conf.d/
