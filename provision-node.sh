@@ -69,6 +69,8 @@ cp /vagrant/install/graylog-plugin-snmp-0.3.0.jar /opt/graylog/plugin/
 # WORKAROUND NECESSARY:
 # service does not start when not called this way (as root) initially
 # firststart provision script calls workaround after all nodes are set up
+touch /etc/graylog/server/node-id
+chown -R graylog: /etc/graylog/
 chown -R graylog: /opt/graylog/
 chown -R graylog: /var/run/graylog
 chown -R graylog: /var/log/graylog
@@ -96,11 +98,11 @@ systemctl start nginx
 # haproxy
 yum -y install haproxy
 systemctl enable haproxy.service
-systemctl start haproxy.service
 #TODO# bind to port 514!
 cp /vagrant/node_${NODE}/haproxy.cfg /etc/haproxy/haproxy.cfg
 # SELINUX for port binding
 setsebool -P haproxy_connect_any 1
+systemctl start haproxy.service
 
 
 # local syslogs
