@@ -34,7 +34,6 @@ Vagrant.configure(2)  do |config|
   config.vm.define "glog01" do |glog01|
     glog01.vm.hostname = "glog01"
     glog01.vm.network "private_network", ip: "172.16.100.53"
-    #glog01.vm.network :forwarded_port, guest: 80, host: 8001
     glog01.vm.provision "node", type: "shell" do |s|
         s.path = "provision-node.sh"
         s.args = "glog01 " + $proxy
@@ -49,7 +48,6 @@ Vagrant.configure(2)  do |config|
   config.vm.define "glog02" do |glog02|
     glog02.vm.hostname = "glog02"
     glog02.vm.network "private_network", ip: "172.16.100.54"
-    #glog02.vm.network :forwarded_port, guest: 80, host: 8002
     glog02.vm.provision "node", type: "shell" do |s|
         s.path = "provision-node.sh"
         s.args = "glog02 " + $proxy
@@ -64,7 +62,6 @@ Vagrant.configure(2)  do |config|
   config.vm.define "glog03" do |glog03|
     glog03.vm.hostname = "glog03"
     glog03.vm.network "private_network", ip: "172.16.100.55"
-    #glog03.vm.network :forwarded_port, guest: 80, host: 8003
     glog03.vm.provision "node", type: "shell" do |s|
         s.path = "provision-node.sh"
         s.args = "glog03 " + $proxy
