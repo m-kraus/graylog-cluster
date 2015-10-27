@@ -59,12 +59,14 @@ cp /vagrant/node_${NODE}/graylog-server.conf /etc/graylog/server/server.conf
 cp /vagrant/node_${NODE}/graylog-server.log4j /etc/graylog/server/log4j.xml
 cp /vagrant/node_${NODE}/graylog-server.service /lib/systemd/system/graylog-server.service
 cp /vagrant/node_${NODE}/graylog-server.sysconfig /etc/sysconfig/graylog-server
+
+# plugins
+cp /vagrant/install/plugin-output-splunk-0.3.0.jar /opt/graylog/plugin/
+cp /vagrant/install/graylog-plugin-snmp-0.3.0.jar /opt/graylog/plugin/
+
 systemctl daemon-reload
 systemctl enable graylog-server.service
 
-# splunk plugin
-cp /vagrant/install/plugin-output-splunk-0.3.0.jar /opt/graylog/plugin/
-cp /vagrant/install/graylog-plugin-snmp-0.3.0.jar /opt/graylog/plugin/
 
 # WORKAROUND NECESSARY:
 # service does not start when not called this way (as root) initially
@@ -108,3 +110,4 @@ systemctl start haproxy.service
 # local syslogs
 cp /vagrant/node_${NODE}/10-glog.conf /etc/rsyslog.d/10-glog.conf
 systemctl restart rsyslog.service
+
