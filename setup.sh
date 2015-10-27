@@ -18,11 +18,11 @@ done
 # download for caches
 
 #graylog
-PACKAGE=graylog-1.1.6.tgz
+PACKAGE=graylog-1.2.1.tgz
 if [ ! -f ./cache/$PACKAGE ]; then
     wget https://packages.graylog2.org/releases/graylog2-server/$PACKAGE -O ./cache/$PACKAGE
 fi
-PACKAGE=graylog-web-interface-1.1.6.tgz
+PACKAGE=graylog-web-interface-1.2.1.tgz
 if [ ! -f ./cache/$PACKAGE ]; then
     wget https://packages.graylog2.org/releases/graylog2-web-interface/$PACKAGE -O ./cache/$PACKAGE
 fi
@@ -48,7 +48,7 @@ if [ ! -f ./cache/$PACKAGE ]; then
 fi
 
 #elasticsearch
-PACKAGE=elasticsearch-1.7.1.noarch.rpm
+PACKAGE=elasticsearch-1.7.3.noarch.rpm
 if [ ! -f ./cache/$PACKAGE ]; then
     rm ./cache/elasticsearch.rpm
     wget https://download.elasticsearch.org/elasticsearch/elasticsearch/$PACKAGE -O ./cache/$PACKAGE
@@ -62,7 +62,7 @@ if [ ! -f ./cache/$PACKAGE ]; then
 fi
 
 # mongodb
-PACKAGE=3.0.6-1.el7.x86_64.rpm
+PACKAGE=3.0.7-1.el7.x86_64.rpm
 if [ ! -f ./cache/mongodb-org-$PACKAGE ]; then
     rm ./cache/mongodb-org.rpm
     wget https://repo.mongodb.org/yum/redhat/7/mongodb-org/stable/x86_64/RPMS/mongodb-org-$PACKAGE -O ./cache/mongodb-org-$PACKAGE

@@ -52,8 +52,8 @@ mkdir -p /var/log/graylog
 mkdir -p /var/lib/graylog-server/
 
 # graylog-server
-tar xzvf /vagrant/cache/graylog-1.1.6.tgz
-mv graylog-1.1.6 /opt/graylog
+tar xzvf /vagrant/cache/graylog-1.2.1.tgz
+mv graylog-1.2.1 /opt/graylog
 mkdir -p /etc/graylog/server
 cp /vagrant/node_${NODE}/graylog-server.conf /etc/graylog/server/server.conf
 cp /vagrant/node_${NODE}/graylog-server.log4j /etc/graylog/server/log4j.xml
@@ -77,8 +77,8 @@ chown -R graylog: /var/log/graylog
 chown -R graylog: /var/lib/graylog-server/
 
 # graylog-web
-tar xzvf /vagrant/cache/graylog-web-interface-1.1.6.tgz
-mv graylog-web-interface-1.1.6 /opt/graylog-web-interface
+tar xzvf /vagrant/cache/graylog-web-interface-1.2.1.tgz
+mv graylog-web-interface-1.2.1 /opt/graylog-web-interface
 chown -R graylog: /opt/graylog-web-interface/
 mkdir -p /etc/graylog/web
 cp /vagrant/node_${NODE}/graylog-web.conf /etc/graylog/web/web.conf
