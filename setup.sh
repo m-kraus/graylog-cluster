@@ -130,7 +130,7 @@ Since Elasticsearch and Graylog are clustered and HAproxy is set up on each
 node, you can also use 172.16.100.54 or 172.16.100.55"
 
 # "-x" was supplied to ommit building of omd01/splunk01
-if [ "$XOMIT" = true ]; then
+if [ "$XOMIT" = false ]; then
     # omd01
     vagrant up omd01
     echo "OMD:
