@@ -14,11 +14,11 @@ while :; do
     shift
 done
 
-vagrant up glog01
-vagrant up glog02
-vagrant up glog03
+vagrant halt glog01
+vagrant halt glog02
+vagrant halt glog03
 
 if [ "$XOMIT" = false ]; then
-    vagrant up omd01
-    vagrant up splunk01
+    vagrant halt omd01
+    vagrant halt splunk01
 fi

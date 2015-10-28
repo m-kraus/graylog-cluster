@@ -40,6 +40,7 @@ Vagrant.configure(2)  do |config|
     end
     glog01.vm.provision "firststart", type: "shell" do |s|
         s.path = "provision-firststart.sh"
+        s.args = "glog01 " + $proxy
     end
     config.vm.provider "virtualbox" do |v|
       v.memory = 3072
@@ -54,6 +55,7 @@ Vagrant.configure(2)  do |config|
     end
     glog02.vm.provision "firststart", type: "shell" do |s|
         s.path = "provision-firststart.sh"
+        s.args = "glog02 " + $proxy
     end
     config.vm.provider "virtualbox" do |v|
       v.memory = 3072
@@ -68,6 +70,7 @@ Vagrant.configure(2)  do |config|
     end
     glog03.vm.provision "firststart", type: "shell" do |s|
         s.path = "provision-firststart.sh"
+        s.args = "glog03 " + $proxy
     end
     config.vm.provider "virtualbox" do |v|
       v.memory = 3072

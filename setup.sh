@@ -17,14 +17,22 @@ done
 
 # download for caches
 
-#graylog
-PACKAGE=graylog-1.2.1.tgz
+#graylog, https://packages.graylog2.org/el/7/
+PACKAGE=graylog-server-1.2.2-1.noarch.rpm
 if [ ! -f ./cache/$PACKAGE ]; then
-    wget https://packages.graylog2.org/releases/graylog2-server/$PACKAGE -O ./cache/$PACKAGE
+    rm ./cache/graylog-server.rpm
+    wget https://packages.graylog2.org/repo/el/7/1.2/x86_64/$PACKAGE -O ./cache/$PACKAGE
+    pushd ./cache/
+    ln -s $PACKAGE graylog-server.rpm
+    popd
 fi
-PACKAGE=graylog-web-interface-1.2.1.tgz
+PACKAGE=graylog-web-1.2.2-1.noarch.rpm
 if [ ! -f ./cache/$PACKAGE ]; then
-    wget https://packages.graylog2.org/releases/graylog2-web-interface/$PACKAGE -O ./cache/$PACKAGE
+    rm ./cache/graylog-web.rpm
+    wget https://packages.graylog2.org/repo/el/7/1.2/x86_64/$PACKAGE -O ./cache/$PACKAGE
+    pushd ./cache/
+    ln -s $PACKAGE graylog-web.rpm
+    popd
 fi
 
 # epel
