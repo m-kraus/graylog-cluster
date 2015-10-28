@@ -1,5 +1,7 @@
 # Graylog demo cluster
 
+This project emerged from an research & development task kindly sponsored by [ConSol* Consulting & Solutions](https://www.consol.de/).
+
 ## Created virtual machines
 
 - __glog01__ (172.16.100.53):
