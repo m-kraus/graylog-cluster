@@ -47,17 +47,17 @@ To bring up the whole demo cluster, simply type
 
 Furthermore ```setup.sh``` downloads the needed packages of Graylog, Elasticsearch and others and stores them in the ```cache``` subfolder for later reuse.
 
-You can suppress the creation of the nodes ```omd01``` and ```splunk01``` using the ```-x``` switch:
+The nodes ```omd01``` and ```splunk01``` are not created automatically. Use the switch ```-o``` to create the node ```omd01``` and the switch ```-x``` to create the node ```splunk01```:
 ```
-./setup.sh -x
+./setup.sh [-o] [-s]
 ```
 
 To install Splunk on the node ```splunk01```, you have to download the RPM for x86_64 from http://de.splunk.com/download manually and put it into the directory ```cache```. The installation has been tested with version ```splunk-6.2.5-272645-linux-2.6-x86_64.rpm```.
 
 To start or stop the demo cluster, you can use ```start.sh``` or ```stop.sh```:
 ```
-./start.sh [-x]
-./stop.sh [-x]
+./start.sh [-o] [-s]
+./stop.sh
 ```
 
 ## Installation scripts
@@ -66,17 +66,17 @@ To start or stop the demo cluster, you can use ```start.sh``` or ```stop.sh```:
 
 The necessary installation steps are kept as simple shell scripts within the vagrant provisioning scripts ```provision-node.sh``` and ```provision-firststart.sh```.
 
-The script ```node-firststart.sh``` creates a syslog TCP input listening on port 10514 using the HTTP REST API of Graylog. See the JSON payload in ```create_input.json```.
+The script ```node-firststart.sh``` creates also a syslog TCP input listening on port 10514 using the HTTP REST API of Graylog. See the JSON payload in ```create_input.json```.
 
 Each node is configured to send its syslog messages via rsyslog to Graylog using this configuration in ```/etc/rsyslog.d/10-glog.conf```:
 ```
 $PreserveFQDN on
  
  $template GRAYLOGRFC5424,"<%pri%>%protocol-version% %timestamp:::date-rfc3339% %HOSTNAME% %app-name% %procid% %msg%\n"
- *.* @@172.16.100.55:10514;GRAYLOGRFC5424
+ *.* @@172.16.100.5X:10514;GRAYLOGRFC5424
 ```
 
-### OMD
+### OMD Labs Edition
 
 The necessary installation and configuration steps are kept in ```provision-omd.sh```.
 
@@ -84,10 +84,14 @@ An OMD site called ```demosite``` will be created and the current proof-of-conce
 
 Sample health checks for the Graylog cluster are also preinstalled.
 
+TODO describe health checks
+
 ## Recommendations
 
 Graylog server runs as user ```graylog```, so opening privileged ports (<1024) is not permitted without additional effort. To ease the reception of syslog messages on the standard port, HAProxy is installed on all 3 nodes of the demo cluster. It redirects incoming messages from port 514 (TCP) round-robin to all three nodes on port port 10514 (TCP).
 Forwarding incoming messages on port 514 (UDP) is not possible in the demo cluster. For a production environment, a load balancer is recommended to forward incoming TCP and UDP messages.
+
+TODO describe firewall settings
 
 ### Configuration
 
@@ -101,7 +105,9 @@ The configuration files are kept for reference in the subfolders ```node_glog01`
 
 The following setting have to be configured in ```/etc/elasticsearch/elasticsearch.yml```:
 
-- ```cluster.name: graylog2``` has to be set.
+- set ```network.host: 172.16.100.53``` explicitly.
+
+- define the cluster name using ```cluster.name: graylog2```.
 
 - ```node.name: "elasticsearch_glog0X"``` should be set for easier identification of Elasticsearch nodes.
 
@@ -124,9 +130,23 @@ The following settings have to be configured in ```/etc/graylog/server/server.co
 
 - Exactly one Graylog node needs to have ```is_master = true``` set.
 
-- Settings for Elasticsearch have to be identical:
-  - Graylog nodes have to have set the same ```elasticsearch_cluster_name = graylog2``` as Elasticsearch.
-  - ```elasticsearch_node_name =  "graylog_glog0X"``` should be set for easier identification of Graylog nodes within Elasticsearch.
+- Settings for Elasticsearch have to be identical as in the Elasticsearch configuration file:
+  - ```elasticsearch_cluster_name = graylog2```
+  - ```elasticsearch_discovery_zen_ping_multicast_enabled = false```
+  - ```elasticsearch_discovery_zen_ping_unicast_hosts = 172.16.100.53:9300,172.16.100.54:9300,172.16.100.55:9300```
+  - ```elasticsearch_cluster_discovery_timeout = 30000```
+  - ```elasticsearch_network_host = 172.16.100.53```
+  - ```elasticsearch_discovery_initial_state_timeout = 30s```
+
+- configure the desired sharding strategy using ```elasticsearch_shards = 5``` and ```elasticsearch_replicas = 1```
+
+- ```elasticsearch_node_name =  "graylog_glog0X"``` should be set for easier identification of Graylog nodes within Elasticsearch.
+
+- set ```password_secret = ...``` as described in the configuration file using ```pwgen -N 1 -s 96``` to the same value on all nodes.
+
+- set ```root_username = ...``` and ```root_password_sha2 = ...``` to the same value on all nodes. As described in the configuration file you can use ```echo -n yourpassword | shasum -a 256``` to generate the password hash.
+
+- configure how to reach the MongoDB replica set using ```mongodb_uri = mongodb://172.16.100.53:27017,172.16.100.54:27017,172.16.100.55:27017/graylog2```
 
 - Graylog nodes have to have access to the same MongoDB database or to a MongoDB replica set, to be able to form a cluster.
 

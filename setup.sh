@@ -1,11 +1,15 @@
 #/bin/bash
 
-XOMIT=false
+OMD=false
+SPLUNK=false
 
 while :; do
     case $1 in
-        -x)
-            XOMIT=true
+        -o)
+            OMD=true
+            ;;
+        -s)
+            SPLUNK=true
             ;;
         *)
             break
@@ -138,7 +142,7 @@ Since Elasticsearch and Graylog are clustered and HAproxy is set up on each
 node, you can also use 172.16.100.54 or 172.16.100.55"
 
 # "-x" was supplied to ommit building of omd01/splunk01
-if [ "$XOMIT" = false ]; then
+if [ "$OMD" = true ]; then
     # omd01
     vagrant up omd01
     echo "OMD:
@@ -147,7 +151,8 @@ if [ "$XOMIT" = false ]; then
     
     Use http://172.16.100.60/demosite/graylogapi/graylog/alerts/1?apikey=123456 for
     HTTP alerts from graylog streams"
-    
+fi    
+if [ "$SPLUNK" = true ]; then
     # splunk01
     vagrant up splunk01
     echo "Splunk is now available at http://172.16.100.70:8000"

@@ -1,11 +1,15 @@
 #/bin/bash
 
-XOMIT=false
+OMD=false
+SPLUNK=false
 
 while :; do
     case $1 in
-        -x)
-            XOMIT=true
+        -o)
+            OMD=true
+            ;;
+        -s)
+            SPLUNK=true
             ;;
         *)
             break
@@ -18,7 +22,9 @@ vagrant up glog01
 vagrant up glog02
 vagrant up glog03
 
-if [ "$XOMIT" = false ]; then
+if [ "$OMD" = true ]; then
     vagrant up omd01
+fi
+if [ "$SPLUNK" = true ]; then
     vagrant up splunk01
 fi
