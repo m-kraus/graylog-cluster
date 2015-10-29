@@ -78,6 +78,8 @@ $PreserveFQDN on
 
 ### OMD Labs Edition
 
+For further information about [OMD Labs Edition](https://labs.consol.de/de/omd/) see [https://labs.consol.de/de/omd/](https://labs.consol.de/de/omd/).
+
 The necessary installation and configuration steps are kept in ```provision-omd.sh```.
 
 An OMD site called ```demosite``` will be created and the current proof-of-concept of the ```graylogapi``` REST_API to receive Graylog alerts will be installed.
