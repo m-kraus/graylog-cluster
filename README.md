@@ -47,7 +47,7 @@ To bring up the whole demo cluster, simply type
 
 Furthermore ```setup.sh``` downloads the needed packages of Graylog, Elasticsearch and others and stores them in the ```cache``` subfolder for later reuse.
 
-The nodes ```omd01``` and ```splunk01``` are not created automatically. Use the switch ```-o``` to create the node ```omd01``` and the switch ```-x``` to create the node ```splunk01```:
+The nodes ```omd01``` and ```splunk01``` are not created automatically. Use the switch ```-o``` to create the node ```omd01``` and the switch ```-s``` to create the node ```splunk01```:
 ```
 ./setup.sh [-o] [-s]
 ```
