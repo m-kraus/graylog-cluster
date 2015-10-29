@@ -126,6 +126,8 @@ The following setting have to be configured in ```/etc/elasticsearch/elasticsear
 
 - For Elasticsearch you should have focus on spaciously dimensioned and fast disk space, as well as a reasonable amount of memory.
 
+The Elasticsearch docs provide helpful information for [Full cluster restarts](https://www.elastic.co/guide/en/elasticsearch/reference/current/restart-upgrade.html) and [Rolling upgrades](https://www.elastic.co/guide/en/elasticsearch/reference/current/rolling-upgrades.html). Especially disabling shard relocation is quite important, since it prevents wasting a lot of unnecessary IO.
+
 ### Graylog server
 
 The following settings have to be configured in ```/etc/graylog/server/server.conf```:
