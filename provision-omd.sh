@@ -9,8 +9,12 @@ yum -y install /vagrant/cache/epel.rpm
 
 
 # omd
-rpm -Uvh "https://labs.consol.de/repo/testing/rhel7/i386/labs-consol-testing.rhel7.noarch.rpm"
-yum install -y omd-2.*
+if [ ! -f /vagrant/cache/omdlabs.rpm ]; then
+    rpm -Uvh "https://labs.consol.de/repo/testing/rhel7/i386/labs-consol-testing.rhel7.noarch.rpm"
+    yum install -y omd-2.*
+else
+    yum install -y /vagrant/cache/omdlabs.rpm
+fi
 
 
 # prerequisites
