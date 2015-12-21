@@ -22,18 +22,18 @@ done
 # download for caches
 
 #graylog, https://packages.graylog2.org/el/7/
-PACKAGE=graylog-server-1.2.2-1.noarch.rpm
+PACKAGE=graylog-server-1.3.1-1.noarch.rpm
 if [ ! -f ./cache/$PACKAGE ]; then
     rm ./cache/graylog-server.rpm
-    wget https://packages.graylog2.org/repo/el/7/1.2/x86_64/$PACKAGE -O ./cache/$PACKAGE
+    curl -v -j -k -L https://packages.graylog2.org/repo/el/7/1.3/x86_64/$PACKAGE > ./cache/$PACKAGE
     pushd ./cache/
     ln -s $PACKAGE graylog-server.rpm
     popd
 fi
-PACKAGE=graylog-web-1.2.2-1.noarch.rpm
+PACKAGE=graylog-web-1.3.1-1.noarch.rpm
 if [ ! -f ./cache/$PACKAGE ]; then
     rm ./cache/graylog-web.rpm
-    wget https://packages.graylog2.org/repo/el/7/1.2/x86_64/$PACKAGE -O ./cache/$PACKAGE
+    curl -v -j -k -L https://packages.graylog2.org/repo/el/7/1.3/x86_64/$PACKAGE > ./cache/$PACKAGE
     pushd ./cache/
     ln -s $PACKAGE graylog-web.rpm
     popd
@@ -43,74 +43,74 @@ fi
 PACKAGE=epel-release-7-5.noarch.rpm
 if [ ! -f ./cache/$PACKAGE ]; then
     rm ./cache/epel.rpm
-    wget http://download.fedoraproject.org/pub/epel/7/x86_64/e/$PACKAGE -O ./cache/$PACKAGE
+    curl -v -j -k -L http://download.fedoraproject.org/pub/epel/7/x86_64/e/$PACKAGE > ./cache/$PACKAGE
     pushd ./cache/
     ln -s $PACKAGE epel.rpm
     popd
 fi
 
-# java
-PACKAGE=jre-8u60-linux-x64.rpm
+# java, http://www.oracle.com/technetwork/java/javase/downloads/index.html
+PACKAGE=jre-8u66-linux-x64.rpm
+PACKAGEDIR=8u66-b17
 if [ ! -f ./cache/$PACKAGE ]; then
     rm ./cache/jre.rpm
-    curl -v -j -k -L -H "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u60-b27/$PACKAGE > ./cache/$PACKAGE
+    curl -v -j -k -L -H "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/$PACKAGEDIR/$PACKAGE > ./cache/$PACKAGE
     pushd ./cache/
     ln -s $PACKAGE jre.rpm
     popd
 fi
 
-#elasticsearch
-PACKAGE=elasticsearch-1.7.3.noarch.rpm
+#elasticsearch, https://www.elastic.co/downloads/past-releases/
+PACKAGE=elasticsearch-1.7.4.noarch.rpm
 if [ ! -f ./cache/$PACKAGE ]; then
     rm ./cache/elasticsearch.rpm
-    wget https://download.elasticsearch.org/elasticsearch/elasticsearch/$PACKAGE -O ./cache/$PACKAGE
+    curl -v -j -k -L https://download.elasticsearch.org/elasticsearch/elasticsearch/$PACKAGE > ./cache/$PACKAGE
     pushd ./cache/
     ln -s $PACKAGE elasticsearch.rpm
     popd
 fi
 PACKAGE=elasticsearch-kopf.zip
 if [ ! -f ./cache/$PACKAGE ]; then
-    wget https://github.com/lmenezes/elasticsearch-kopf/archive/master.zip -O ./cache/$PACKAGE
+    curl -v -j -k -L https://github.com/lmenezes/elasticsearch-kopf/archive/master.zip > ./cache/$PACKAGE
 fi
 
 # mongodb
-PACKAGE=3.0.7-1.el7.x86_64.rpm
+PACKAGE=3.2.0-1.el7.x86_64.rpm
 if [ ! -f ./cache/mongodb-org-$PACKAGE ]; then
     rm ./cache/mongodb-org.rpm
-    wget https://repo.mongodb.org/yum/redhat/7/mongodb-org/stable/x86_64/RPMS/mongodb-org-$PACKAGE -O ./cache/mongodb-org-$PACKAGE
+    curl -v -j -k -L https://repo.mongodb.org/yum/redhat/7/mongodb-org/stable/x86_64/RPMS/mongodb-org-$PACKAGE > ./cache/mongodb-org-$PACKAGE
     pushd ./cache/
     ln -s mongodb-org-$PACKAGE mongodb-org.rpm
     popd
 fi
 if [ ! -f ./cache/mongodb-org-mongos-$PACKAGE ]; then
     rm ./cache/mongodb-org-mongos.rpm
-    wget https://repo.mongodb.org/yum/redhat/7/mongodb-org/stable/x86_64/RPMS/mongodb-org-mongos-$PACKAGE -O ./cache/mongodb-org-mongos-$PACKAGE
+    curl -v -j -k -L https://repo.mongodb.org/yum/redhat/7/mongodb-org/stable/x86_64/RPMS/mongodb-org-mongos-$PACKAGE > ./cache/mongodb-org-mongos-$PACKAGE
     pushd ./cache/
     ln -s mongodb-org-mongos-$PACKAGE mongodb-org-mongos.rpm
     popd
 fi
 if [ ! -f ./cache/mongodb-org-server-$PACKAGE ]; then
     rm ./cache/mongodb-org-server.rpm
-    wget https://repo.mongodb.org/yum/redhat/7/mongodb-org/stable/x86_64/RPMS/mongodb-org-server-$PACKAGE -O ./cache/mongodb-org-server-$PACKAGE
+    curl -v -j -k -L https://repo.mongodb.org/yum/redhat/7/mongodb-org/stable/x86_64/RPMS/mongodb-org-server-$PACKAGE > ./cache/mongodb-org-server-$PACKAGE
     pushd ./cache/
     ln -s mongodb-org-server-$PACKAGE mongodb-org-server.rpm
     popd
 fi
 if [ ! -f ./cache/mongodb-org-shell-$PACKAGE ]; then
     rm ./cache/mongodb-org-shell.rpm
-    wget https://repo.mongodb.org/yum/redhat/7/mongodb-org/stable/x86_64/RPMS/mongodb-org-shell-$PACKAGE -O ./cache/mongodb-org-shell-$PACKAGE
+    curl -v -j -k -L https://repo.mongodb.org/yum/redhat/7/mongodb-org/stable/x86_64/RPMS/mongodb-org-shell-$PACKAGE > ./cache/mongodb-org-shell-$PACKAGE
     pushd ./cache/
     ln -s mongodb-org-shell-$PACKAGE mongodb-org-shell.rpm
     popd
 fi
 if [ ! -f ./cache/mongodb-org-tools-$PACKAGE ]; then
     rm ./cache/mongodb-org-tools.rpm
-    wget https://repo.mongodb.org/yum/redhat/7/mongodb-org/stable/x86_64/RPMS/mongodb-org-tools-$PACKAGE -O ./cache/mongodb-org-tools-$PACKAGE
+    curl -v -j -k -L https://repo.mongodb.org/yum/redhat/7/mongodb-org/stable/x86_64/RPMS/mongodb-org-tools-$PACKAGE > ./cache/mongodb-org-tools-$PACKAGE
     pushd ./cache/
     ln -s mongodb-org-tools-$PACKAGE mongodb-org-tools.rpm
     popd
 fi
-
 
 # bring up machines without provisionioning
 vagrant up --no-provision glog01
