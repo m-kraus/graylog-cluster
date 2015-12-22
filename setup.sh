@@ -22,7 +22,7 @@ done
 # download for caches
 
 #graylog, https://packages.graylog2.org/el/7/
-PACKAGE=graylog-server-1.3.1-1.noarch.rpm
+PACKAGE=graylog-server-1.3.2-1.noarch.rpm
 if [ ! -f ./cache/$PACKAGE ]; then
     rm ./cache/graylog-server.rpm
     curl -v -j -k -L https://packages.graylog2.org/repo/el/7/1.3/x86_64/$PACKAGE > ./cache/$PACKAGE
@@ -30,7 +30,7 @@ if [ ! -f ./cache/$PACKAGE ]; then
     ln -s $PACKAGE graylog-server.rpm
     popd
 fi
-PACKAGE=graylog-web-1.3.1-1.noarch.rpm
+PACKAGE=graylog-web-1.3.2-1.noarch.rpm
 if [ ! -f ./cache/$PACKAGE ]; then
     rm ./cache/graylog-web.rpm
     curl -v -j -k -L https://packages.graylog2.org/repo/el/7/1.3/x86_64/$PACKAGE > ./cache/$PACKAGE
